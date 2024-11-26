@@ -20,7 +20,7 @@ final class OpenTelemetryBundle extends Bundle
 {
     public static function name(): string
     {
-        return 'friendsofopentelemetry/opentelemetry-bundle';
+        return 'kaspiman/opentelemetry-bundle';
     }
 
     public static function version(): string
