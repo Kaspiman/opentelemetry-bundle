@@ -47,7 +47,7 @@ final class OpenTelemetryBundle extends Bundle
         $container->addCompilerPass(new RemoveTwigInstrumentationPass());
     }
 
-    public function boot()
+    public function boot(): void
     {
         Registry::registerResourceDetector(
             $this->container->getParameter('open_telemetry.bundle.name'),
