@@ -126,7 +126,8 @@
             "symfony/runtime": true,
             "tbachert/spi": true
         },
-        "sort-packages": true
+        "sort-packages": true,
+        "lock": false
     },
     "scripts": {
         "check-reqs": "@php vendor/bin/composer-require-checker check",
