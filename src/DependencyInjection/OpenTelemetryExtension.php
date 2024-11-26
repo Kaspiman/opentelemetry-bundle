@@ -55,15 +55,11 @@ final class OpenTelemetryExtension extends ConfigurableExtension
      */
     private function loadServiceParams(array $config, ContainerBuilder $container): void
     {
+        $container->setParameter('open_telemetry.service', $config);
         $container->setParameter('open_telemetry.service.namespace', $config['namespace']);
         $container->setParameter('open_telemetry.service.name', $config['name']);
         $container->setParameter('open_telemetry.service.version', $config['version']);
         $container->setParameter('open_telemetry.service.environment', $config['environment']);
-
-        Registry::registerResourceDetector(
-            $container->getParameter('open_telemetry.bundle.name'),
-            new BundleResourceDetector($config),
-        );
     }
 
     /**

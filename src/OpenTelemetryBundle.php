@@ -13,6 +13,8 @@ use FriendsOfOpenTelemetry\OpenTelemetryBundle\DependencyInjection\Compiler\Remo
 use FriendsOfOpenTelemetry\OpenTelemetryBundle\DependencyInjection\Compiler\RemoveTwigInstrumentationPass;
 use FriendsOfOpenTelemetry\OpenTelemetryBundle\DependencyInjection\Compiler\SetInstrumentationTypePass;
 use FriendsOfOpenTelemetry\OpenTelemetryBundle\DependencyInjection\Compiler\TracerLocatorPass;
+use FriendsOfOpenTelemetry\OpenTelemetryBundle\Resources\BundleResourceDetector;
+use OpenTelemetry\SDK\Registry;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
@@ -43,5 +45,13 @@ final class OpenTelemetryBundle extends Bundle
         $container->addCompilerPass(new RemoveMessengerInstrumentationPass());
         $container->addCompilerPass(new RemoveTwigInstrumentationPass());
         $container->addCompilerPass(new RemoveTwigInstrumentationPass());
+    }
+
+    public function boot()
+    {
+        Registry::registerResourceDetector(
+            $this->container->getParameter('open_telemetry.bundle.name'),
+            new BundleResourceDetector($this->container->getParameter('open_telemetry.service')),
+        );
     }
 }
