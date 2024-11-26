@@ -3,6 +3,8 @@
 namespace FriendsOfOpenTelemetry\OpenTelemetryBundle\DependencyInjection;
 
 use FriendsOfOpenTelemetry\OpenTelemetryBundle\Instrumentation\InstrumentationTypeEnum;
+use FriendsOfOpenTelemetry\OpenTelemetryBundle\Resources\BundleResourceDetector;
+use OpenTelemetry\SDK\Registry;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
@@ -53,11 +55,15 @@ final class OpenTelemetryExtension extends ConfigurableExtension
      */
     private function loadServiceParams(array $config, ContainerBuilder $container): void
     {
-        // TODO These values are not passed to the OpenTelemetry SDK
         $container->setParameter('open_telemetry.service.namespace', $config['namespace']);
         $container->setParameter('open_telemetry.service.name', $config['name']);
         $container->setParameter('open_telemetry.service.version', $config['version']);
         $container->setParameter('open_telemetry.service.environment', $config['environment']);
+
+        Registry::registerResourceDetector(
+            $container->getParameter('open_telemetry.bundle.name'),
+            new BundleResourceDetector($config),
+        );
     }
 
     /**
