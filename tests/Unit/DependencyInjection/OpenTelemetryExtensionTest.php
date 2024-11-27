@@ -58,7 +58,7 @@ class OpenTelemetryExtensionTest extends AbstractExtensionTestCase
     {
         $this->load();
 
-        self::assertContainerBuilderHasParameter('open_telemetry.bundle.name', 'friendsofopentelemetry/opentelemetry-bundle');
+        self::assertContainerBuilderHasParameter('open_telemetry.bundle.name', 'kaspiman/opentelemetry-bundle');
         self::assertContainerBuilderHasParameter('open_telemetry.bundle.version');
         self::assertContainerBuilderHasParameter('monolog.additional_channels', ['open_telemetry']);
     }
