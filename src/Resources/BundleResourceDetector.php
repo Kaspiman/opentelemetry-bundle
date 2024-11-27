@@ -9,6 +9,9 @@ use OpenTelemetry\SemConv\ResourceAttributes;
 
 final readonly class BundleResourceDetector implements ResourceDetectorInterface
 {
+    /**
+     * @param array{'namespace': string, 'name': string, 'version': string, 'environment': string} $config
+     */
     public function __construct(private array $config)
     {
     }

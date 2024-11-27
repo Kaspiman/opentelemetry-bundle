@@ -3,8 +3,6 @@
 namespace FriendsOfOpenTelemetry\OpenTelemetryBundle\DependencyInjection;
 
 use FriendsOfOpenTelemetry\OpenTelemetryBundle\Instrumentation\InstrumentationTypeEnum;
-use FriendsOfOpenTelemetry\OpenTelemetryBundle\Resources\BundleResourceDetector;
-use OpenTelemetry\SDK\Registry;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
